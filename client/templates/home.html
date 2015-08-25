@@ -12,12 +12,23 @@ controller: formatCtrl
 <table st-table="rowCollection" class="table table-striped">
   <thead>
   <tr>
-    <th>first name</th>
-    <th>last name</th>
-    <th>birth date</th>
-    <th>balance</th>
+    <th st-sort="firstName">first name</th>
+    <th st-sort="lastName">last name</th>
+    <th st-sort="birthDate">birth date</th>
+    <th st-sort="balance" st-skip-natural="true">balance</th>
     <th>email</th>
   </tr>
+
+   <tr>
+    <th>
+      <input placeholder="search firstname" st-search="firstName" class="input-sm form-control" type="search" />
+    </th>
+    <th>
+      <input placeholder="search lastname" st-search="lastName" class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+   </tr>
+
   </thead>
   <tbody>
   <tr ng-repeat="row in rowCollection">
