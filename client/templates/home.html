@@ -9,17 +9,53 @@ controller: formatCtrl
   <p class="lead">This is version <strong>1.1 Weisshorn</strong>.</p>
 </div> -->
 
-<table st-table="rowCollection" class="table table-striped">
-  <thead>
-  <tr>
-    <th st-sort="firstName">first name</th>
-    <th st-sort="lastName">last name</th>
-    <th st-sort="birthDate">birth date</th>
-    <th st-sort="balance" st-skip-natural="true">balance</th>
-    <th>email</th>
-  </tr>
+<!-- New task form -->
+<zf-modal id="newPersonForm" overlay="true">
 
-   <tr>
+  <div class="grid-block vertical">
+
+    <div class="dark title-bar">
+
+      <span class="title left">Add New Person</span>
+      <span class="right" style="cursor:pointer;">
+        <a zf-close="">Cancel <img zf-iconic="" data-src="assets/iconic/circle-x.svg" class="iconic-sm"></a>
+      </span>
+
+    </div>
+
+    <div class="grid-content">
+
+      <form name="newPerson" class="taskForm">
+
+        <input ng-model="newPerson.firstName" type="text" placeholder="First Name">
+
+        <input ng-model="newPerson.lastName" type="text" placeholder="Last Name">
+
+        <input ng-model="newPerson.role" type="text" placeholder="Role">
+
+        <!-- <input ng-model="newPerson.date" type="date" ng-init="model=(myDate | date:'dd-MMMM-yyyy')" /> -->
+
+        <input ng-model="newPerson.email" type="text" placeholder="Email">        
+        
+        <p>
+          <a class="large button float-right success" zf-close="" ng-click="CreatePerson( newPerson.firstName, newPerson.lastName, newPerson.role, newPerson.email ); newPerson = ''"><img zf-iconic="" data-src="assets/iconic/circle-check.svg" class="iconic-sm">Add New Person</a>
+        </p>
+      </form>
+
+    </div>
+
+  </div>
+  
+</zf-modal>
+<!-- /New task form -->
+
+<div class="grid-container">
+
+
+<table st-persist="rows" st-table="rows" class="table table-striped">
+  <thead>
+
+  <tr>
     <th>
       <input placeholder="search firstname" st-search="firstName" class="input-sm form-control" type="search" />
     </th>
@@ -27,26 +63,47 @@ controller: formatCtrl
       <input placeholder="search lastname" st-search="lastName" class="input-sm form-control" type="search"/>
     </th>
     <th>
+      <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+    </th>
+
+<!--     <th>
+    </th> -->
+  
+
+    <th colspan="4">
+      <a zf-open="newPersonForm" class="medium success button float-right"><img zf-iconic="" data-src="assets/iconic/action.svg" class="iconic-sm">Add Person</a>
+    </th>
    </tr>
+
+
+  <tr>
+    <th st-sort="firstName" style="cursor:pointer;">First Name</th>
+    <th st-sort="lastName" style="cursor:pointer;">Last Name</th>
+    <th st-sort="role" style="cursor:pointer;">Role</th>
+    <th st-sort="date" style="cursor:pointer;">Date</th>
+    <th st-sort="email" style="cursor:pointer;">Email</th>
+   <!--  <th>Email</th> -->
+    <th>Action</th>
+  </tr>
+
 
   </thead>
   <tbody>
-  <tr ng-repeat="row in rowCollection">
+  <tr ng-repeat="row in rows track by $index">
     <td>{{row.firstName | uppercase}}</td>
     <td>{{row.lastName}}</td>
-    <td>{{row.birthDate | date}}</td>
-    <td>{{row.balance | currency}}</td>
+    <td>{{row.role}}</td>
+    <td>{{row.date | date}}</td>
+    <!-- <td>{{row.email}}</td> -->
+    <!-- <td>{{row.balance | currency}}</td> -->
     <td>
-      <button class="btn btn-sm" popover-placement="top" popover="{{row.email}}" type="button">
-        <i class="glyphicon glyphicon-eye-open"></i>
-      </button>
-      <a ng-href="mailto:{{row.email}}">email</a></td>
+        <a ng-href="mailto:{{row.email}}"><img zf-iconic="" data-src="assets/iconic/envelope.svg" class="iconic-md"></a>
+    </td>
     <td>
-      <button type="button" ng-click="removeRow(row)" class="btn btn-sm btn-danger">
-        <i class="glyphicon glyphicon-remove-circle">
-        </i>
-      </button>
+        <a ng-click="removeRow(row)" class="" href="#"><img zf-iconic="" data-src="assets/iconic/circle-x.svg" size="medium" class="iconic-color-alert"></a>
     </td>
   </tr>
   </tbody>
 </table>
+
+</div>

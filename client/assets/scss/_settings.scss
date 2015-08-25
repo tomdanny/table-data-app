@@ -91,7 +91,9 @@
 
 // We use these to control various global styles
 // $body-background: #fff;
+$body-background: #ecf0f1;
 // $body-font-color: #222;
+// $body-font-color: #2c3e50;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
@@ -99,22 +101,30 @@
 
 // Application Colors
 // $primary-color: #00558b;
+$primary-color: #2c3e50;
 // $secondary-color: #f1f1f1;
-// $alert-color: #F04124;
+$secondary-color: #34495e;
+$alert-color: #F04124;
+// $alert-color: #c0392b;
 // $info-color: #A0D3E8;
 // $success-color: #43AC6A;
+$success-color: #1abc9c;
 // $warning-color: #F08A24;
+$warning-color: #c0392b;
 // $dark-color: #232323;
+$dark-color: #34495e;
 // $gray: #dfdfdf;
 // $gray-dark: darken($gray, 8);
 // $gray-light: lighten($gray, 8);
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 4px;
+$global-radius: 0;
 // $global-rounded: 1000px;
 
 // We use this for default spacing
 // $global-padding: 1rem;
+$global-padding: 1.1rem;
 // $global-spacing: rem-calc(15); 
 
 // 3. Breakpoints
@@ -612,3 +622,5 @@
 //   right: 'right',
 //   title: 'title',
 // ); 
+
+@import "custom";

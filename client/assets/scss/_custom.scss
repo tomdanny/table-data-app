@@ -1,0 +1,20 @@
+.menu-bar {
+  margin-bottom: $global-padding !important;
+}
+
+//** New task form
+
+// Remove gap around modal form
+.modal {
+  padding: 0 !important;
+}
+
+// Add some spacing above the new task / edit task form
+.taskForm {
+  padding-top: $global-padding;
+}
+
+// Remove gap on right side of right floated buttons
+.button.float-right {
+  margin: 0 0 $global-padding $global-padding;
+}
