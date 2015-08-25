@@ -38,15 +38,6 @@
 
   // Start custom controller 
 
-//   angular.module('application').controller('formatCtrl', ['$scope', function (scope) {
-
-//     scope.removeRow = function removeRow(row) {
-//         var index = scope.rowCollection.indexOf(row);
-//         if (index !== -1) {
-//             scope.rowCollection.splice(index, 1);
-//         }
-//     }
-// }]);
 
   angular.module('application').controller('formatCtrl', formatCtrl);
 
@@ -56,15 +47,23 @@
 
       angular.extend(this, $controller('DefaultController', {$scope: $scope, $stateParams: $stateParams, $state: $state}));
 
-      $scope.editMode = false;
+      // $scope.editMode = false;
 
-      $scope.showstatus = 'incomplete';
+      // $scope.showstatus = 'incomplete';
 
-      $scope.showtag = {};
+      // $scope.showtag = {};
 
       $scope.rows = JSON.parse(localStorage.getItem("saved_tasks"));
       if (typeof $scope.rows === 'undefined' || $scope.rows === null){
       $scope.rows = [];
+      }
+
+      //remove to the real data holder
+      $scope.removeItem = function removeItem(row) {
+        var index = $scope.rows.indexOf(row);
+        if (index !== -1) {
+            $scope.rows.splice(index, 1);
+        }
       }
 
       $scope.CreatePerson = function(firstName, lastName, role, date, email){
