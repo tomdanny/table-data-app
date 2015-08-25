@@ -66,21 +66,17 @@ controller: formatCtrl
       <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
     </th>
 
-<!--     <th>
-    </th> -->
-  
-
     <th colspan="4">
-      <a zf-open="newPersonForm" class="medium success button float-right"><img zf-iconic="" data-src="assets/iconic/action.svg" class="iconic-sm">Add Person</a>
+      <a zf-open="newPersonForm" class="medium success button float-right"><i class="fa fa-plus"></i> Add Person</a>
     </th>
    </tr>
 
 
   <tr>
-    <th st-sort="firstName" style="cursor:pointer;">First Name</th>
-    <th st-sort="lastName" style="cursor:pointer;">Last Name</th>
-    <th st-sort="role" style="cursor:pointer;">Role</th>
-    <th st-sort="date" style="cursor:pointer;">Date</th>
+    <th st-sort="firstName" style="cursor:pointer;">First Name <i class="fa fa-sort"></i></th>
+    <th st-sort="lastName" style="cursor:pointer;">Last Name <i class="fa fa-sort"></i></th>
+    <th st-sort="role" style="cursor:pointer;">Role <i class="fa fa-sort"></i></th>
+    <th st-sort="date" style="cursor:pointer;">Date <i class="fa fa-sort"></i></th>
     <th st-sort="email" style="cursor:pointer;">Email</th>
    <!--  <th>Email</th> -->
     <th>Action</th>
@@ -97,10 +93,10 @@ controller: formatCtrl
     <!-- <td>{{row.email}}</td> -->
     <!-- <td>{{row.balance | currency}}</td> -->
     <td>
-        <a ng-href="mailto:{{row.email}}"><img zf-iconic="" data-src="assets/iconic/envelope.svg" class="iconic-md"></a>
+        <a ng-href="mailto:{{row.email}}"><i class="fa fa-envelope-o fa-2x"></i>
     </td>
     <td>
-        <a ng-click="removeItem(row)" class="" href="#"><img zf-iconic="" data-src="assets/iconic/circle-x.svg" size="medium" class="iconic-color-alert"></a>
+        <a ng-click="removeItem(row)" class="" href="#"><i class="fa fa-trash-o fa-2x"></i>
     </td>
   </tr>
   </tbody>
