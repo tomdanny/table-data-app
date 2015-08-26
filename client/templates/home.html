@@ -4,12 +4,7 @@ url: /
 controller: formatCtrl
 ---
 
-<!-- <div class="grid-container">
-  <h1>Welcome to Foundation for Apps!</h1>
-  <p class="lead">This is version <strong>1.1 Weisshorn</strong>.</p>
-</div> -->
-
-<!-- New task form -->
+<!-- New person form -->
 <zf-modal id="newPersonForm" overlay="true">
 
   <div class="grid-block vertical">
@@ -35,7 +30,7 @@ controller: formatCtrl
 
         <!-- <input ng-model="newPerson.date" type="date" paceholder="Date"> -->
 
-        <input ng-model="newPerson.email" type="text" placeholder="Email">        
+        <input ng-model="newPerson.email" type="email" placeholder="Email">        
         
         <p>
           <a class="default button float-right success" zf-close="" ng-click="CreatePerson( newPerson.firstName, newPerson.lastName, newPerson.role, newPerson.date, newPerson.email); newPerson = ''"><i class="fa fa-check fa-lg"></i> Add New Person</a>
@@ -47,10 +42,52 @@ controller: formatCtrl
   </div>
   
 </zf-modal>
-<!-- /New task form -->
+<!-- /New person form -->
+
+
+<!-- Person editing form -->
+
+<zf-modal id="editPersonForm" overlay="true">
+
+  <div class="grid-block vertical">
+
+    <div class="dark title-bar">
+
+      <span class="title left">Edit Person</span>
+      <span class="right" style="cursor:pointer;">
+        <a zf-close=""><i class="fa fa-times fa-lg"></i></a>
+      </span>
+
+    </div>
+
+    <div class="grid-content">
+
+      <div ng-show="editMode == true">
+                
+        <form name="newPerson" class="taskForm">
+
+        <input ng-model="newPerson.firstName" type="text" placeholder="First Name">
+
+        <input ng-model="newPerson.lastName" type="text" placeholder="Last Name">
+
+        <input ng-model="newPerson.role" type="text" placeholder="Role">
+
+        <input ng-model="newPerson.email" type="text" placeholder="Email">
+        
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+  
+</zf-modal>
+
+<!-- /Person editing form -->
+
 
 <div class="grid-container">
-
 
 <table st-persist="rows" st-table="rows" class="table table-striped">
   <thead>
@@ -73,32 +110,52 @@ controller: formatCtrl
 
 
   <tr>
-    <th st-sort="firstName" style="cursor:pointer;">First Name <i class="fa fa-sort"></i></th>
-    <th st-sort="lastName" style="cursor:pointer;">Last Name <i class="fa fa-sort"></i></th>
-    <th st-sort="role" style="cursor:pointer;">Role <i class="fa fa-sort"></i></th>
-    <th st-sort="date" style="cursor:pointer;">Date <i class="fa fa-sort"></i></th>
-    <th st-sort="email" style="cursor:pointer;">Email</th>
-    <th>Action</th>
+    <th st-ratio="20" st-sort="firstName" style="cursor:pointer;">First Name <i class="fa fa-sort"></i></th>
+    <th st-ratio="20" st-sort="lastName" style="cursor:pointer;">Last Name <i class="fa fa-sort"></i></th>
+    <th st-ratio="20" st-sort="role" style="cursor:pointer;">Role <i class="fa fa-sort"></i></th>
+    <th st-ratio="15" st-sort="date" style="cursor:pointer;">Date <i class="fa fa-sort"></i></th>
+    <th st-ratio="5" st-sort="email" style="cursor:pointer;">Email</th>
+    <th st-ratio="5">Action</th>
+    <th st-ratio="5">Edit</th>
   </tr>
 
 
   </thead>
   <tbody>
-  <tr ng-repeat="row in rows track by $index">
-    <td>{{row.firstName | uppercase}}</td>
-    <td>{{row.lastName}}</td>
-    <td>{{row.role}}</td>
-    <td>{{row.date | date}}</td>
-    <td><a ng-href="mailto:{{row.email}}"><i class="fa fa-envelope-o fa-2x"></i></a></td>
-    <td>
-        <a ng-click="removeItem(row)" class="" href="#"><i class="fa fa-trash-o fa-2x"></i>
-    </td>
-  </tr>
+    
+      <tr ng-repeat="row in rows track by $index">
+
+        <div ng-show="editMode == false">
+
+        <td st-ratio="20">{{row.firstName | uppercase}}</td>
+        <td st-ratio="20">{{row.lastName}}</td>
+        <td st-ratio="20">{{row.role}}</td>
+        <td st-ratio="15">{{row.date | date}}</td>
+        <td st-ratio="5"><a ng-href="mailto:{{row.email}}"><i class="fa fa-envelope-o fa-2x"></i></a></td>
+
+        </div>
+        
+        <!-- Remove/Trash Icon -->
+        <td st-ratio="5"><a ng-click="removeItem(row)" href="#"><i class="fa fa-trash-o fa-2x"></a></i>
+        </td>
+        <!-- /Remove/Trash Icon -->
+
+        <!-- Edit Icon -->
+        <td st-ratio="5">
+        <div zf-open="editPersonForm" >
+          <a id="edit_toggle_{{row.id}}" ng-model="editMode" ng-change="editMode || UpdateTasks()"><i class="fa fa-cog fa-2x"></i></a>
+          <label for="edit_toggle_{{row.id}}"></label>
+        </div>
+        </td>
+        <!-- Edit Icon -->
+
+      </tr>
   </tbody>
 
   <tfoot>
     <tr>
-      <td colspan="7" class="text-center">
+      <td><a class="tiny hollow button" st-export>Export</a></td>
+      <td colspan="6" class="text-center">
         <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
       </td>
     </tr>

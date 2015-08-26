@@ -66,7 +66,12 @@
         }
       }
 
-      $scope.itemsByPage=10;
+      $scope.editItem = function editItem(row) {
+        $scope.editrow = angular.copy(row);
+        $scope.edit = true;
+      }
+
+      $scope.itemsByPage=5;
 
 
       $scope.CreatePerson = function(firstName, lastName, role, date, email){
@@ -88,6 +93,32 @@
     }
 
   // End custom controller
+
+  // st-ratio
+  angular.module('application').directive('stRatio',function(){
+        return {
+          link:function(scope, element, attr){
+            var ratio=+(attr.stRatio);
+            
+            element.css('width',ratio+'%');
+            
+          }
+        };
+    });
+  // /st-ratio
+
+  angular.module('application').directive('stExport',function(){
+  return {
+    require:'^stTable',
+    link:function(scope, element, attr,ctrl){
+      element.bind('click',function(){
+        alert(ctrl.getFilteredCollection().length);
+
+      })
+    }
+  }
+  
+});
 
   // END CUSTOM APP CODE
 
