@@ -66,6 +66,9 @@
         }
       }
 
+      $scope.itemsByPage=10;
+
+
       $scope.CreatePerson = function(firstName, lastName, role, date, email){
       var row = {};
 

@@ -18,7 +18,7 @@ controller: formatCtrl
 
       <span class="title left">Add New Person</span>
       <span class="right" style="cursor:pointer;">
-        <a zf-close="">Cancel <img zf-iconic="" data-src="assets/iconic/circle-x.svg" class="iconic-sm"></a>
+        <a zf-close=""><i class="fa fa-times fa-lg"></i></a>
       </span>
 
     </div>
@@ -33,12 +33,12 @@ controller: formatCtrl
 
         <input ng-model="newPerson.role" type="text" placeholder="Role">
 
-        <!-- <input ng-model="newPerson.date" type="date" ng-init="model=(myDate | date:'dd-MMMM-yyyy')" /> -->
+        <!-- <input ng-model="newPerson.date" type="date" paceholder="Date"> -->
 
         <input ng-model="newPerson.email" type="text" placeholder="Email">        
         
         <p>
-          <a class="large button float-right success" zf-close="" ng-click="CreatePerson( newPerson.firstName, newPerson.lastName, newPerson.role, newPerson.email ); newPerson = ''"><img zf-iconic="" data-src="assets/iconic/circle-check.svg" class="iconic-sm">Add New Person</a>
+          <a class="default button float-right success" zf-close="" ng-click="CreatePerson( newPerson.firstName, newPerson.lastName, newPerson.role, newPerson.date, newPerson.email); newPerson = ''"><i class="fa fa-check fa-lg"></i> Add New Person</a>
         </p>
       </form>
 
@@ -67,7 +67,7 @@ controller: formatCtrl
     </th>
 
     <th colspan="4">
-      <a zf-open="newPersonForm" class="medium success button float-right"><i class="fa fa-plus"></i> Add Person</a>
+      <a zf-open="newPersonForm" class="expand success button float-right"><i class="fa fa-plus"></i> Add Person</a>
     </th>
    </tr>
 
@@ -78,7 +78,6 @@ controller: formatCtrl
     <th st-sort="role" style="cursor:pointer;">Role <i class="fa fa-sort"></i></th>
     <th st-sort="date" style="cursor:pointer;">Date <i class="fa fa-sort"></i></th>
     <th st-sort="email" style="cursor:pointer;">Email</th>
-   <!--  <th>Email</th> -->
     <th>Action</th>
   </tr>
 
@@ -90,16 +89,21 @@ controller: formatCtrl
     <td>{{row.lastName}}</td>
     <td>{{row.role}}</td>
     <td>{{row.date | date}}</td>
-    <!-- <td>{{row.email}}</td> -->
-    <!-- <td>{{row.balance | currency}}</td> -->
-    <td>
-        <a ng-href="mailto:{{row.email}}"><i class="fa fa-envelope-o fa-2x"></i>
-    </td>
+    <td><a ng-href="mailto:{{row.email}}"><i class="fa fa-envelope-o fa-2x"></i></a></td>
     <td>
         <a ng-click="removeItem(row)" class="" href="#"><i class="fa fa-trash-o fa-2x"></i>
     </td>
   </tr>
   </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="7" class="text-center">
+        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+      </td>
+    </tr>
+  </tfoot>
+
 </table>
 
 </div>
