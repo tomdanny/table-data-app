@@ -49,6 +49,10 @@
 
       $scope.editMode = false;
 
+      // $scope.showstatus = 'incomplete';
+
+      // $scope.showtag = {};
+
       $scope.rows = JSON.parse(localStorage.getItem("saved_rows"));
       if (typeof $scope.rows === 'undefined' || $scope.rows === null){
       $scope.rows = [];
@@ -60,7 +64,13 @@
         if (index !== -1) {
             $scope.rows.splice(index, 1);
         }
+
+        localStorage.removeItem("saved_rows");
+        localStorage.setItem("saved_rows", JSON.stringify($scope.rows));
+
+        $scope.rows = JSON.parse(localStorage.getItem("saved_rows"));
       }
+      // /end of removing data
 
       $scope.itemsByPage=8;
 
@@ -76,7 +86,6 @@
       row.id = Date.now();
 
       $scope.rows.push(row);
-
 
       localStorage.setItem("saved_rows", JSON.stringify($scope.rows));
       };

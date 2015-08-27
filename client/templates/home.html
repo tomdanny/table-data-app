@@ -94,7 +94,7 @@ controller: formatCtrl
 
 <!-- /Person editing form -->
 
-
+<!-- Search Form + Add Person Form-->
 <div class="grid-container">
 
 <table st-persist="rows" st-table="rows" class="table table-striped">
@@ -115,7 +115,7 @@ controller: formatCtrl
       <a zf-open="newPersonForm" class="expand success button float-right"><i class="fa fa-plus"></i> Add Person</a>
     </th>
    </tr>
-
+<!-- /Search Form + Add Person Form-->
 
   <tr>
     <th st-ratio="20" st-sort="firstName" style="cursor:pointer;">First Name <i class="fa fa-sort"></i></th>
@@ -133,7 +133,7 @@ controller: formatCtrl
     
       <tr ng-repeat="row in rows track by $index">
 
-        <div ng-show="editMode == false">
+        <div ng-show="editMode == true">
 
         <td st-ratio="20" ng-model="row.firstName">{{row.firstName | uppercase}}</td>
         <td st-ratio="20" ng-model="row.lastName">{{row.lastName}}</td>
