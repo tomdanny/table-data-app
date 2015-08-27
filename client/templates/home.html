@@ -30,7 +30,7 @@ controller: formatCtrl
 
         <!-- <input ng-model="newPerson.date" type="date" paceholder="Date"> -->
 
-        <input ng-model="newPerson.email" type="email" placeholder="Email">        
+        <input ng-model="newPerson.email" type="text" placeholder="Email">        
         
         <p>
           <a class="default button float-right success" zf-close="" ng-click="CreatePerson( newPerson.firstName, newPerson.lastName, newPerson.role, newPerson.date, newPerson.email); newPerson = ''"><i class="fa fa-check fa-lg"></i> Add New Person</a>
@@ -62,19 +62,27 @@ controller: formatCtrl
 
     <div class="grid-content">
 
-      <div ng-show="editMode == true">
+      <div ng-show="editMode == false">
+
+        <div ng-repeat="row in rows track by $index">
                 
-        <form name="newPerson" class="taskForm">
+        <form name="editPerson" class="taskForm">
 
-        <input ng-model="newPerson.firstName" type="text" placeholder="First Name">
+          <div ng-show="row.id"><input ng-model="row.firstName" type="text"></div>
 
-        <input ng-model="newPerson.lastName" type="text" placeholder="Last Name">
+          <div ng-show="row.id"><input ng-model="row.lastName" type="text"></div>
 
-        <input ng-model="newPerson.role" type="text" placeholder="Role">
+          <div ng-show="row.id"><input ng-model="row.role" type="text"></div>
 
-        <input ng-model="newPerson.email" type="text" placeholder="Email">
+          <div ng-show="row.id"><input ng-model="row.email" type="text"></div>
+
+          <p>
+            <a class="default button float-right success" zf-close="" ng-click="EditPerson( row.firstName, row.lastName, row.role, row.date, row.email); editPerson = ''"><i class="fa fa-check fa-lg"></i> Save Changes</a>
+          </p>
         
         </form>
+      
+        </div>
 
       </div>
 
@@ -127,10 +135,10 @@ controller: formatCtrl
 
         <div ng-show="editMode == false">
 
-        <td st-ratio="20">{{row.firstName | uppercase}}</td>
-        <td st-ratio="20">{{row.lastName}}</td>
-        <td st-ratio="20">{{row.role}}</td>
-        <td st-ratio="15">{{row.date | date}}</td>
+        <td st-ratio="20" ng-model="row.firstName">{{row.firstName | uppercase}}</td>
+        <td st-ratio="20" ng-model="row.lastName">{{row.lastName}}</td>
+        <td st-ratio="20" ng-model="row.role">{{row.role}}</td>
+        <td st-ratio="15" ng-model="row.date">{{row.date | date}}</td>
         <td st-ratio="5"><a ng-href="mailto:{{row.email}}"><i class="fa fa-envelope-o fa-2x"></i></a></td>
 
         </div>
@@ -142,8 +150,8 @@ controller: formatCtrl
 
         <!-- Edit Icon -->
         <td st-ratio="5">
-        <div zf-open="editPersonForm" >
-          <a id="edit_toggle_{{row.id}}" ng-model="editMode" ng-change="editMode || UpdateTasks()"><i class="fa fa-cog fa-2x"></i></a>
+        <div zf-open="editPersonForm">
+          <a id="edit_toggle_{{row.id}}" ng-model="editMode" ng-click="editMode || UpdateTasks()"><i class="fa fa-cog fa-2x"></i></a>
           <label for="edit_toggle_{{row.id}}"></label>
         </div>
         </td>

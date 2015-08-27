@@ -47,13 +47,9 @@
 
       angular.extend(this, $controller('DefaultController', {$scope: $scope, $stateParams: $stateParams, $state: $state}));
 
-      // $scope.editMode = false;
+      $scope.editMode = false;
 
-      // $scope.showstatus = 'incomplete';
-
-      // $scope.showtag = {};
-
-      $scope.rows = JSON.parse(localStorage.getItem("saved_tasks"));
+      $scope.rows = JSON.parse(localStorage.getItem("saved_rows"));
       if (typeof $scope.rows === 'undefined' || $scope.rows === null){
       $scope.rows = [];
       }
@@ -66,12 +62,7 @@
         }
       }
 
-      $scope.editItem = function editItem(row) {
-        $scope.editrow = angular.copy(row);
-        $scope.edit = true;
-      }
-
-      $scope.itemsByPage=5;
+      $scope.itemsByPage=8;
 
 
       $scope.CreatePerson = function(firstName, lastName, role, date, email){
@@ -86,8 +77,15 @@
 
       $scope.rows.push(row);
 
-      //localStorage.setItem("all_tags", JSON.stringify($scope.allTags));
-      localStorage.setItem("saved_tasks", JSON.stringify($scope.rows));
+
+      localStorage.setItem("saved_rows", JSON.stringify($scope.rows));
+      };
+
+
+      $scope.EditPerson = function(){
+
+       localStorage.setItem("saved_rows", JSON.stringify($scope.rows));
+
       };
 
     }
@@ -107,6 +105,7 @@
     });
   // /st-ratio
 
+  // st-export
   angular.module('application').directive('stExport',function(){
   return {
     require:'^stTable',
@@ -118,7 +117,8 @@
     }
   }
   
-});
+  });
+  // /st-export
 
   // END CUSTOM APP CODE
 
