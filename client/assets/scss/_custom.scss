@@ -19,8 +19,21 @@
   margin: 0 0 $global-padding $global-padding;
 }
 
-.fa-trash-o:hover {
+i.fa-trash-o:hover {
   color: $alert-color;
 }
 
+i.fa-trash-o {
+  padding-left: 10px;
+  color: #34495e;
+}
 
+i.fa-envelope-o {
+  padding-left: 7px;
+  color: #34495e;
+}
+
+i.fa-cog {
+  padding-top: 7px;
+  color: #34495e;
+}

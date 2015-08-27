@@ -5,6 +5,7 @@
     'ui.router',
     'ngAnimate',
     'smart-table',
+    'firebase',
 
 
     //foundation
@@ -41,13 +42,25 @@
 
   angular.module('application').controller('formatCtrl', formatCtrl);
 
-  formatCtrl.$inject = ['$scope', '$stateParams', '$state', '$controller'];
+  formatCtrl.$inject = ['$scope', '$stateParams', '$state', '$controller', '$firebaseArray'];
 
-    function formatCtrl($scope, $stateParams, $state, $controller) {
+    function formatCtrl($scope, $stateParams, $state, $controller, $firebaseArray) {
 
       angular.extend(this, $controller('DefaultController', {$scope: $scope, $stateParams: $stateParams, $state: $state}));
 
       $scope.editMode = false;
+
+      // Firebase
+      var ref = new Firebase("https://table-data.firebaseio.com/people");
+
+      $scope.people = $firebaseArray(ref);
+
+        $scope.people.$add({
+          person_by_index_number: 
+          JSON.parse(localStorage.getItem("saved_rows"))
+       });
+
+      // End of Firebase
 
       // $scope.showstatus = 'incomplete';
 
@@ -87,6 +100,7 @@
 
       $scope.rows.push(row);
 
+
       localStorage.setItem("saved_rows", JSON.stringify($scope.rows));
       };
 
@@ -125,6 +139,7 @@
       })
     }
   }
+
   
   });
   // /st-export
