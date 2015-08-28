@@ -41,6 +41,7 @@ var paths = {
     'bower_components/angularfire/dist/angularfire.min.js',
     'bower_components/angular-smart-table/dist/smart-table.js',
     'bower_components/angular-ui-router/release/angular-ui-router.js',
+    // 'bower_components/lrInfiniteScroll/lrInfiniteScroll.js',
     'bower_components/foundation-apps/js/vendor/**/*.js',
     'bower_components/foundation-apps/js/angular/**/*.js',
     '!bower_components/foundation-apps/js/angular/app.js'

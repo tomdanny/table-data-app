@@ -11,7 +11,7 @@
 
 // Add some spacing above the new task / edit task form
 .taskForm {
-  padding-top: $global-padding;
+  padding: $global-padding;
 }
 
 // Remove gap on right side of right floated buttons
@@ -36,4 +36,17 @@ i.fa-envelope-o {
 i.fa-cog {
   padding-top: 7px;
   color: #34495e;
+}
+
+ul.pagination {
+
+}
+
+ul.pagination li a {
+  background: $success-color;
+  color: #fff;
+}
+
+ul.pagination li a:hover {
+  background: #16A085;
 }

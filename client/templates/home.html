@@ -144,9 +144,27 @@ controller: formatCtrl
         </div>
         
         <!-- Remove/Trash Icon -->
-        <td st-ratio="5"><a ng-click="removeItem(row)" href="#"><i class="fa fa-trash-o fa-2x"></a></i>
+         <td st-ratio="5"><a zf-open="removeRow"><i class="fa fa-trash-o fa-2x"></a></i>
+        
+        <div zf-modal="" id="removeRow">
+          <div class="dark title-bar">
+            <span class="title left">Warning</span>
+            <span class="right" style="cursor:pointer;">
+              <a zf-close=""><i class="fa fa-times fa-lg"></i></a>
+            </span>
+          </div>
+    
+          <div class="grid-block vertical">
+            <div class="taskForm">
+            <h4>Are you sure you want to delete this row?</h4>
+            <a class="alert button" ng-click="removeItem(row)" href="#">Remove</a> <a zf-close="" class="secondary button" href="#">Cancel</a>
+            </div>
+          </div>
+        </div>
         </td>
+        
         <!-- /Remove/Trash Icon -->
+
 
         <!-- Edit Icon -->
         <td st-ratio="5">
@@ -157,15 +175,17 @@ controller: formatCtrl
         </td>
         <!-- Edit Icon -->
 
+
       </tr>
   </tbody>
 
   <tfoot>
     <tr>
-      <td><a class="tiny hollow button" st-export>Export</a></td>
-      <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
-      </td>
+      <!-- <td><a class="tiny hollow button" st-export>Export</a></td> -->
+      <!-- <div class="grid-content"> -->
+       <!--  <td colspan="7" st-pagination="" st-items-by-page="2"></td> -->
+      <!-- </div> -->
+        <!-- <div st-pagination="" st-items-by-page="itemsByPage"></div> -->
     </tr>
   </tfoot>
 

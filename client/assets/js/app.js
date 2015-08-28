@@ -62,9 +62,6 @@
 
       // End of Firebase
 
-      // $scope.showstatus = 'incomplete';
-
-      // $scope.showtag = {};
 
       $scope.rows = JSON.parse(localStorage.getItem("saved_rows"));
       if (typeof $scope.rows === 'undefined' || $scope.rows === null){
@@ -85,7 +82,7 @@
       }
       // /end of removing data
 
-      $scope.itemsByPage=8;
+      // $scope.itemsByPage=6;
 
 
       $scope.CreatePerson = function(firstName, lastName, role, date, email){
